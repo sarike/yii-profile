@@ -8,6 +8,7 @@ const swig = require('swig');
 const childProcess = require('child_process');
 
 const argv = yargs
+  .usage('Usage: $0 your_profile.log [Options]')
   .option('s', {
     alias: 'start-time',
     description: 'The start time to profile.'
