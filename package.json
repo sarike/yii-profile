@@ -1,10 +1,10 @@
 {
     "name": "yii-profile",
-    "version": "0.0.1",
-    "main": "src/index.js",
+    "version": "1.0.0",
+    "main": "./index.js",
     "description": "A profile log parser for yii1/2.",
     "repository": {
-        "url": ""
+        "url": "https://github.com/sarike/yii-profile"
     },
     "bin": {
         "yii-profile": "index.js"
