@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Profile Result</title>
+        <style>
+            .message {
+                margin-bottom: 10px;
+                border: 1px solid #DDD;
+            }
+            .stat > span {
+                display: inline-block;
+                line-height: 35px;
+                width: 120px;
+                padding: 0 10px;
+            }
+            .stat {
+                font-size: 12px;
+                color: #FFF;
+            }
+            .red > .stat {
+                background-color: #fd5050;
+            }
+            .green > .stat {
+                background-color: #6ab771;
+            }
+            .blue > .stat {
+                background-color: #6278ff;
+            }
+            .stat::after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+            .content {
+                border-top: 1px solid #DDDDDD;
+                padding: 10px;
+            }
+            .cat {
+                line-height: 35px;
+                float: right;
+                margin-right: 10px;
+            }
+        </style>
+        <script>
+            window.result = {{ result|raw|json_encode }};
+        </script>
+    </head>
+    <body>
+        {% if Object.keys(result).length === 0 %}
+        <div class="message green">
+            <div class="stat"><span>没有结果...</span></div>
+        </div>
+        {% endif %}
+        {% for k in sortedKeys %}
+            {% set m = result[k] %}
+            {% set avg = Math.ceil(m.total/m.count) %}
+            {% set color = 'red' %}
+            {% if avg <= 2000 %}
+                {% set color = 'blue' %}
+            {% endif %}
+            {% if avg <= 1000 %}
+                {% set color = 'green' %}
+            {% endif %}
+            <div class="message {{color}}">
+                <div class="stat">
+                    <span>出现次数：{{m.count}}</span>
+                    <span>平均耗时：{{avg}} ms</span>
+                    <span>最大耗时：{{m.max}} ms</span>
+                    <span>最小耗时：{{m.min}} ms</span>
+                    <div class="cat">类别：{{m.cat}}</div>
+                </div>
+                <div class="content">
+                    {{k}}
+                </div>
+            </div>
+        {% endfor %}
+    </body>
+</html>

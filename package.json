@@ -1,0 +1,17 @@
+{
+    "name": "yii-profile",
+    "version": "0.0.1",
+    "main": "src/index.js",
+    "description": "A profile log parser for yii1/2.",
+    "repository": {
+        "url": ""
+    },
+    "bin": {
+        "yii-profile": "index.js"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "swig": "^1.4.2",
+        "yargs": "^6.5.0"
+    }
+}
